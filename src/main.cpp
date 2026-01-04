@@ -11,29 +11,60 @@ void mostrar_tablero(char tablero[]){
 
 void jugador1(char tablero[]){
     int numero=0;
+    bool movimientoValido=false;
 
-    std::cout<<"Jugador 1: X\n";
-    std::cout<<"Ingrese un numero para poner su ficha: ";
-    std::cin>>numero;
-    
-    mostrar_tablero(tablero);
-    tablero[numero-1]='X';
+    do{
+        std::cout<<"Jugador 1: X\n";
+        mostrar_tablero(tablero);
+        std::cout<<"Ingrese un numero para poner su ficha: ";
+        std::cin>>numero;
 
-    system("cls");
+        if(numero<1||numero>9){
+            std::cout<<"Numero invalido, intente de nuevo";
+            system("pause");
+            system("cls");
+            continue;
+        } else {
+            if(tablero[numero-1]=='X'||tablero[numero-1]=='O'){
+                std::cout<<"Esa casilla ya esta ocupada, intente de nuevo";
+                system("pause");
+                system("cls");
+            } else {
+                tablero[numero-1]='X';
+                system("cls");
+                movimientoValido=true;
+            }
+        }
+    } while(!movimientoValido);
 }
 
 void jugador2(char tablero[]){
     int numero=0;
+    bool movimientoValido=false;
 
-    mostrar_tablero(tablero);
+    do{
+        std::cout<<"Jugador 2: O\n";
+        mostrar_tablero(tablero);
+        std::cout<<"Ingrese un numero para poner su ficha: ";
+        std::cin>>numero;
 
-    std::cout<<"Jugador 2: O\n";
-    std::cout<<"Ingrese un numero para poner su ficha: ";
-    std::cin>>numero;
-
-    tablero[numero-1]='O';
-
-    system("cls");
+        if(numero<1||numero>9){
+            std::cout<<"Numero invalido, intente de nuevo";
+            system("pause");
+            system("cls");
+            continue;
+        } else {
+            if(tablero[numero-1]=='X'||tablero[numero-1]=='O'){
+                std::cout<<"Esa casilla ya esta ocupada, intente de nuevo";
+                system("pause");
+                system("cls");
+            } else {
+                tablero[numero-1]='O';
+                system("cls");
+                movimientoValido=true;
+            }
+        }
+    } while(!movimientoValido);
 }
 
 int main(){
