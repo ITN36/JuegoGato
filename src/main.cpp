@@ -1,5 +1,6 @@
 #include <iostream>
 
+//Funcion para mostrar el tablero
 void mostrar_tablero(char tablero[]){
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
@@ -7,6 +8,42 @@ void mostrar_tablero(char tablero[]){
         }
         std::cout<<"\n";
     }
+}
+
+bool verificar_ganador(char tablero[]){
+    for(int i=0;i<3;i++){
+        if(tablero[i*3] == 'X'&&tablero[i*3+1] == 'X'&&tablero[i*3+2] == 'X'||
+            tablero[i*3] == 'O'&&tablero[i*3+1] == 'O'&&tablero[i*3+2] == 'O'){
+            std::cout<<"Felicidades, eres el ganador"<<std::endl;
+            system("pause");
+            return true;
+        }
+    }
+
+    for(int i=0;i<3;i++){
+        if(tablero[i]=='X'&&tablero[i+3]=='X'&&tablero[i+6]=='X'||
+            tablero[i]=='O'&&tablero[i+3]=='O'&&tablero[i+6]=='O'){
+                std::cout<<"Felicidades, eres el ganador"<<std::endl;
+            system("pause");
+            return true;
+            }
+    }
+
+    if(tablero[0]=='X'&&tablero[4]=='X'&&tablero[8]=='X'||
+        tablero[0]=='O'&&tablero[4]=='O'&&tablero[8]=='O'){
+            std::cout<<"Felicidades, eres el ganador"<<std::endl;
+            system("pause");
+            return true;
+        }
+
+    if(tablero[2]=='X'&&tablero[4]=='X'&&tablero[6]=='X'||
+        tablero[2]=='O'&&tablero[4]=='O'&&tablero[6]=='O'){
+            std::cout<<"Felicidades, eres el ganador"<<std::endl;
+            system("pause");
+            return true;
+        }
+
+    return false;
 }
 
 void jugador1(char tablero[]){
@@ -72,10 +109,14 @@ int main(){
 
     while(true){
         jugador1(tablero);
+        if(verificar_ganador(tablero)==true){
+            break;
+        }
         jugador2(tablero);
+        if(verificar_ganador(tablero)==true){
+            break;
+        }
     }
-    
-    
     
     system("pause");
     return 0;
