@@ -106,16 +106,23 @@ void jugador2(char tablero[]){
 
 int main(){
     char tablero[9] = {'1','2','3','4','5','6','7','8','9'};
+    int i=0;
 
     while(true){
         jugador1(tablero);
         if(verificar_ganador(tablero)==true){
             break;
         }
+        i++;
+        if(i==9){
+            std::cout<<"Es un empate\nCasillas ocupadas\n";
+            break;
+        }
         jugador2(tablero);
         if(verificar_ganador(tablero)==true){
             break;
         }
+        i++;
     }
     
     system("pause");
